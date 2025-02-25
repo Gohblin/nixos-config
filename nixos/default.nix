@@ -17,6 +17,7 @@
     ./modules/font-config.nix
     ./modules/zlibrary.nix
     ./modules/git.nix
+    ./modules/vim-nil.nix
     
   ];
 
@@ -29,6 +30,7 @@
     };
   };
 
+   programs.vim-nil.enable = true;
    programs.zlibrary.enable = true;
 
    git.enable = true;
