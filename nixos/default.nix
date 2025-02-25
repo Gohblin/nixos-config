@@ -18,6 +18,7 @@
     ./modules/zlibrary.nix
     ./modules/git.nix
     ./modules/vim-nil.nix
+    ./modules/nix-search.nix
     
   ];
 
@@ -30,6 +31,7 @@
     };
   };
 
+   programs.nixPackageSearch.enable = true;
    programs.vim-nil.enable = true;
    programs.zlibrary.enable = true;
 
