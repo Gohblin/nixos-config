@@ -2,28 +2,62 @@
 
 {
   environment.systemPackages = with pkgs; [
-    # Text editors
+    # Text editors and IDEs
     vim
 
+    # Terminal utilities
+    tmux
+    fzf
+    bat
+    jq
+    atuin
+    tui-journal
+    tuisky
+    inputs.zen-browser.packages."${system}".default
+
     # System utilities
-    git
-    home-manager
     wget
     curl
     htop
     tree
-    ripgrep
-    fd
     file
-    unzip
     xclip
 
-    # System monitoring
+    # File and search tools
+    ripgrep
+    fd
+    
+    # Archive tools
+    zip
+    unzip
+    p7zip
+
+    # System monitoring and information
     btop
-    dconf2nix
     iotop
     lsof
-    atuin
+    neofetch
+    inxi
+
+    # Network tools
+    dig
+    whois
+    nmap
+    tcpdump
+    netcat
+
+    # Development tools
+    git
+    gcc
+    gnumake
+    python3
+    
+    # System management
+    home-manager
+    dconf2nix
+
+    # GNOME extensions and management
+    gnome-extension-manager
     gnomeExtensions.pop-shell
     gnomeExtensions.transparent-top-bar-adjustable-transparency
     gnomeExtensions.blur-my-shell
@@ -34,38 +68,8 @@
     gnomeExtensions.fly-pie
     gnomeExtensions.caffeine
     gnomeExtensions.dynamic-panel
-    gnome-extension-manager
-
-    # Network tools
-    dig
-    whois
-    nmap
-    tcpdump
-    netcat
-
-    # Development tools
-    gcc
-    gnumake
-    python3
-    
-    # Terminal utilities
-    tmux
-    fzf
-    bat
-    jq
-    inputs.zen-browser.packages."${system}".default
-
-    # Archive tools
-    zip
-    unzip
-    p7zip
-
-    # System information
-    neofetch
-    inxi
   ];
 
   # Enable bash completion for all programs
   programs.bash.completion.enable = true;
-
 }

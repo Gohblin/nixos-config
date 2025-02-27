@@ -17,11 +17,15 @@
     nvf.url = "github:NotAShelf/nvf";
 
 
+    nix-snapd.url = "github:nix-community/nix-snapd";
+    nix-snapd.inputs.nixpkgs.follows = "nixpkgs";
+
+
     # TODO: Add hardware configuration if needed
     # hardware.url = "github:nixos/nixos-hardware";
   };
 
-  outputs = { self, nixpkgs, home-manager, zen-browser, nixcord, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, zen-browser, nixcord, nix-snapd, ... }@inputs:
   let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
@@ -36,6 +40,9 @@
         inherit system;
         modules = [
           ./nixos/default.nix
+          ./nixos/modules/pieces-os.nix
+          nix-snapd.nixosModules.default
+        
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -61,6 +68,7 @@
       };
     };
 
+   
 
     homeConfigurations = {
       "joshua@nixos" = home-manager.lib.homeManagerConfiguration {
