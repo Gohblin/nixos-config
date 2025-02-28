@@ -1,10 +1,9 @@
 {
-  description = "Joshua's NixOS Configuration";
+  description = "Joshua's NixOS Steamdeck Configuration";
 
   inputs = {
     # Core inputs
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
     
     # Zen browser flake
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
@@ -14,48 +13,41 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     nixcord.url = "github:kaylorben/nixcord";
-    nvf.url = "github:NotAShelf/nvf";
-
 
     nix-snapd.url = "github:nix-community/nix-snapd";
     nix-snapd.inputs.nixpkgs.follows = "nixpkgs";
 
-
-    # TODO: Add hardware configuration if needed
-    # hardware.url = "github:nixos/nixos-hardware";
+    # Add Jovian-NixOS as an input
+    jovian.url = "github:Jovian-Experiments/Jovian-NixOS/development";
   };
 
-  outputs = { self, nixpkgs, home-manager, zen-browser, nixcord, nix-snapd, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, zen-browser, nixcord, nix-snapd, jovian, ... }@inputs:
   let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
   in {
-    packages.${system} = {
-      reddit-tui = pkgs.callPackage /home/joshua/nixos-config/packages/reddit-tui.nix { };
-    };
 
     nixosConfigurations = {
-      # TODO: Replace 'hostname' with your actual hostname
       nixos = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [
           ./nixos/default.nix
-          ./nixos/modules/pieces-os.nix
+          ./steamdeck.nix
           nix-snapd.nixosModules.default
-        
+          
+          # Import Jovian modules
+          jovian.nixosModules.default
+          
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.joshua = import ./home-manager/default.nix;
             
-             home-manager.sharedModules = [
+            home-manager.sharedModules = [
               inputs.nixcord.homeManagerModules.nixcord
             ];
- 
-
             
- 
             # Pass flake inputs to home-manager configuration
             home-manager.extraSpecialArgs = {
               inherit inputs zen-browser;
@@ -67,8 +59,6 @@
         specialArgs = { inherit inputs; };
       };
     };
-
-   
 
     homeConfigurations = {
       "joshua@nixos" = home-manager.lib.homeManagerConfiguration {
@@ -91,5 +81,4 @@
     # TODO: Add any custom packages or overlays
     # overlays = import ./overlays;
   };
-
 }
