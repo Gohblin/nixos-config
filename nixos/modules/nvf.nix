@@ -1,15 +1,18 @@
 # configuration.nix
-{ config, pkgs, inputs, ... }:
-
 {
-  imports = [ 
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
+  imports = [
     # Import nvf module
     inputs.nvf.nixosModules.default
   ];
 
   programs.nvf = {
     enable = true;
-    
+
     # Enable built-in documentation
     enableManpages = true;
 

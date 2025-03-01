@@ -1,23 +1,26 @@
-{ config, lib, pkgs, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   home.packages = with pkgs; [
     (writeShellScriptBin "focuswriter-dark" ''
-      export QT_QPA_PLATFORM=xcb
-      export QT_STYLE_OVERRIDE=Fusion
-      export QT_QPA_PLATFORMTHEME=qt5ct
-      
-      # Set up dictionary path
-      export DICPATH="${hunspell}/share/hunspell"
-      
-      # Ensure multimedia support
-      export LD_LIBRARY_PATH="${lib.makeLibraryPath [
+       export QT_QPA_PLATFORM=xcb
+       export QT_STYLE_OVERRIDE=Fusion
+       export QT_QPA_PLATFORMTHEME=qt5ct
+
+       # Set up dictionary path
+       export DICPATH="${hunspell}/share/hunspell"
+
+       # Ensure multimedia support
+       export LD_LIBRARY_PATH="${lib.makeLibraryPath [
         pipewire
         libpulseaudio
       ]}"
-    
-     exec ${focuswriter}/bin/focuswriter "$@"
-  
+
+      exec ${focuswriter}/bin/focuswriter "$@"
+
     '')
 
     # Required dependencies

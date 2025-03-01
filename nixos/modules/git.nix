@@ -1,7 +1,10 @@
 # modules/git.nix
-{ config, pkgs, lib, ... }:
-
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   options = {
     git = {
       enable = lib.mkEnableOption "Git configuration management";
@@ -42,10 +45,11 @@
     };
 
     # User-specific Git config via Home Manager
-    home-manager.users."deck" = {  # Your actual system username here
+    home-manager.users."deck" = {
+      # Your actual system username here
       programs.git = {
         enable = true;
-        userName = config.git.userName;  # Your Git username "Gohblin"
+        userName = config.git.userName; # Your Git username "Gohblin"
         userEmail = config.git.userEmail;
         aliases = {
           st = "status";
@@ -65,4 +69,3 @@
     };
   };
 }
-

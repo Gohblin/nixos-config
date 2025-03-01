@@ -1,6 +1,10 @@
-{ config, inputs, lib, pkgs, ... }:
-
 {
+  config,
+  inputs,
+  lib,
+  pkgs,
+  ...
+}: {
   environment.systemPackages = with pkgs; [
     # Text editors and IDEs
     vim
@@ -26,7 +30,7 @@
     # File and search tools
     ripgrep
     fd
-    
+
     # Archive tools
     zip
     unzip
@@ -51,11 +55,9 @@
     gcc
     gnumake
     python3
-    
+
     # System management
     home-manager
     dconf2nix
-
   ];
-
 }

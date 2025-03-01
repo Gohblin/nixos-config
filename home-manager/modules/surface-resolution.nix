@@ -1,7 +1,10 @@
 # ~/.config/home-manager/surface-resolution.nix
-{ config, lib, pkgs, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   home.packages = with pkgs; [
     pkgs.gnome-tweaks
     pkgs.dconf-editor

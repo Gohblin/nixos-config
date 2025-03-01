@@ -1,8 +1,10 @@
 # ~/.config/nixpkgs/modules/firefox-default.nix
-
-{ config, lib, pkgs, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   programs.firefox = {
     enable = true;
     profiles = {
@@ -14,4 +16,3 @@
     };
   };
 }
-

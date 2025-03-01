@@ -1,8 +1,10 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
   cfg = config.programs.vim-nil;
 in {
   options.programs.vim-nil = {
@@ -58,4 +60,3 @@ in {
     environment.variables.EDITOR = "vim";
   };
 }
-

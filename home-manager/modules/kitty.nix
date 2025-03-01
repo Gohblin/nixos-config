@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   programs.kitty = {
     enable = true;
     settings = {
@@ -22,7 +24,7 @@
       enable_audio_bell = "yes";
       cursor_shape = "underline";
       cursor_blink_interval = "0.5";
-      
+
       # Keep terminal open when process exits
       close_on_child_death = "no";
     };

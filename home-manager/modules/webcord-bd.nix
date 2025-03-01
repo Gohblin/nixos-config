@@ -1,10 +1,12 @@
-{ config, pkgs, lib, ... }:
-
-with lib;
-
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+with lib; let
   cfg = config.programs.webcord-bd;
-  
+
   # Download BetterDiscord
   betterdiscord = pkgs.fetchurl {
     url = "https://github.com/BetterDiscord/BetterDiscord/releases/download/v1.10.1/betterdiscord.asar";
@@ -37,13 +39,13 @@ let
       // Extract BetterDiscord
       const asarPath = path.join(__dirname, 'betterdiscord.asar');
       const bdPath = path.join(app.getPath('userData'), 'betterdiscord');
-      
+
       app.on('ready', () => {
         // Extract BetterDiscord if not already extracted
         if (!require('fs').existsSync(bdPath)) {
           asar.extractAll(asarPath, bdPath);
         }
-        
+
         // Load BetterDiscord
         require(path.join(bdPath, 'betterdiscord.js')).initialize();
       });
@@ -64,7 +66,7 @@ let
     mkdir -p "$WEBCORD_CONFIG_PATH"
     mkdir -p "$WEBCORD_CONFIG_PATH/plugins"
     mkdir -p "$WEBCORD_CONFIG_PATH/themes"
-    
+
     # Create WebCord config if it doesn't exist
     if [ ! -f "$WEBCORD_CONFIG_PATH/config.json" ]; then
       cat > "$WEBCORD_CONFIG_PATH/config.json" << EOF
@@ -74,10 +76,9 @@ let
     }
     EOF
     fi
-    
+
     exec ${webcord-with-bd}/bin/webcord "$@"
   '';
-
 in {
   options.programs.webcord-bd = {
     enable = mkEnableOption "WebCord with BetterDiscord support";
@@ -86,7 +87,7 @@ in {
   config = mkIf cfg.enable {
     # Add to your home-manager configuration
     home.packages = [
-      webcord-wrapper  # Use our wrapper instead of webcord directly
+      webcord-wrapper # Use our wrapper instead of webcord directly
     ];
 
     # Create necessary directories

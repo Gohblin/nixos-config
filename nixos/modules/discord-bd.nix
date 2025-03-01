@@ -3,9 +3,8 @@
   lib,
   pkgs,
   ...
-}: 
-with lib;
-let
+}:
+with lib; let
   cfg = config.programs.discord-bd;
 
   # Download BetterDiscord
@@ -34,13 +33,13 @@ let
       // Extract BetterDiscord
       const asarPath = path.join(__dirname, 'betterdiscord.asar');
       const bdPath = path.join(app.getPath('userData'), 'betterdiscord');
-      
+
       app.on('ready', () => {
         // Extract BetterDiscord if not already extracted
         if (!require('fs').existsSync(bdPath)) {
           asar.extractAll(asarPath, bdPath);
         }
-        
+
         // Load BetterDiscord
         require(path.join(bdPath, 'betterdiscord.js')).initialize();
       });
@@ -53,14 +52,13 @@ let
       fi
     '';
   });
-
 in {
   options.programs.discord-bd = {
     enable = mkEnableOption "Discord with BetterDiscord support";
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = [ discord-with-bd ];
+    environment.systemPackages = [discord-with-bd];
 
     # Create necessary directories for all users
     system.activationScripts.betterdiscord = ''

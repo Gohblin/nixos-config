@@ -1,14 +1,18 @@
-{ config, lib, pkgs, ... }:
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   users = lib.filterAttrs (_: user: user.isNormalUser) config.users.users;
-  userName = if users == {} 
+  userName =
+    if users == {}
     then throw "No normal user configured"
     else lib.head (lib.attrNames users);
 in {
   config = {
-    services.dbus.packages = [ pkgs.gnome-session ];
-    
+    services.dbus.packages = [pkgs.gnome-session];
+
     environment.systemPackages = [
       (pkgs.writeScriptBin "restart-gnome-session" ''
         #!${pkgs.runtimeShell}
@@ -30,4 +34,3 @@ in {
     '';
   };
 }
-

@@ -1,6 +1,9 @@
-{ config, lib, pkgs, ... }:
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   appName = "rpgsessions";
   css = ''
     @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
@@ -34,7 +37,7 @@ in {
     icon = "d20";
     categories = ["Game" "RolePlaying"];
     settings = {
-    StartupWMClass = "WebApp-rpgsessions";
+      StartupWMClass = "WebApp-rpgsessions";
     };
   };
 
@@ -44,14 +47,17 @@ in {
     DisableFirefoxStudies = true;
     Preferences = {
       "network.cookie.lifetimePolicy" = lib.mkForce 0;
-      "browser.tabs.firefox-view" = { Value = false; Status = "locked"; };
+      "browser.tabs.firefox-view" = {
+        Value = false;
+        Status = "locked";
+      };
     };
     ExtensionSettings = {
-      "{446900e4-71c2-419f-a6a7-df9c091e268b}" = { # uBlock Origin
+      "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
+        # uBlock Origin
         install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
         installation_mode = "force_installed";
       };
     };
   };
 }
-

@@ -1,25 +1,27 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
   cfg = config.programs.blackbox-terminal;
 in {
   options.programs.blackbox-terminal = {
     enable = mkEnableOption "Custom optimizations for Blackbox Terminal";
-    
+
     highPriority = mkOption {
       type = types.bool;
       default = true;
       description = "Give Blackbox Terminal higher CPU priority";
     };
-    
+
     gpuAcceleration = mkOption {
       type = types.bool;
       default = true;
       description = "Enable GPU acceleration for Blackbox Terminal";
     };
-    
+
     memoryLimit = mkOption {
       type = types.int;
       default = 500;
@@ -57,7 +59,7 @@ in {
     environment.systemPackages = with pkgs; [
       blackbox-terminal
     ];
-    
+
     # Adjust system resource limits
     security.pam.loginLimits = [
       {

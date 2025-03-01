@@ -1,13 +1,15 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
   cfg = config.programming;
 in {
   options.programming = {
     enable = mkEnableOption "Programming languages and tools";
-    
+
     languages = mkOption {
       type = types.attrsOf (types.submodule {
         options = {
@@ -34,4 +36,3 @@ in {
     # You can access the enabled languages, their packages, and LSPs elsewhere in your config
   };
 }
-

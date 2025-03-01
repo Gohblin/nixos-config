@@ -1,6 +1,9 @@
-{ config, lib, pkgs, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   options = {
     # You can add custom options here if needed
   };
@@ -17,6 +20,4 @@
       };
     };
   };
-
 }
-

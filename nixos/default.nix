@@ -1,6 +1,9 @@
-{ config, pkgs, lib, ... }:
-
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
     ./modules/boot.nix
@@ -16,31 +19,29 @@
     ./modules/git.nix
     ./modules/nix-search.nix
     ./modules/nix-search-file.nix
-    
   ];
 
-   home-manager = {
+  home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
     backupFileExtension = "backup";
-    users.deck = { ... }: {
+    users.deck = {...}: {
       # Your home-manager config for joshua
     };
   };
 
-   git.enable = true;
-     git.userName = "Gohblin";
-     git.userEmail = "literategoblin@gmail.com";
+  git.enable = true;
+  git.userName = "Gohblin";
+  git.userEmail = "literategoblin@gmail.com";
 
+  services.nix-search-file = {
+    enable = true;
+    defaultSearchPath = "./";
+    maxContextLines = 2;
+  };
 
-    services.nix-search-file = {
-      enable = true;
-      defaultSearchPath = "./";
-      maxContextLines = 2;
-   };
-
-   services.snap.enable = true;
-   services.minecraft-firewall = {
+  services.snap.enable = true;
+  services.minecraft-firewall = {
     enable = true;
     port = 25565;
     useTailscale = true;
@@ -49,5 +50,4 @@
   myPlasma.enable = true;
 
   system.stateVersion = "24.11";
-
 }

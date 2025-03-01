@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }: {
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   home.packages = with pkgs.gnomeExtensions; [
     blur-my-shell
     dash-to-dock
@@ -11,8 +16,8 @@
     "org/gnome/shell" = {
       disable-user-extensions = false;
       enabled-extensions = [
-        "blur-my-shell@aunetx"          # UUID for blur-my-shell
-        "dash-to-dock@micxgx.gmail.com" 
+        "blur-my-shell@aunetx" # UUID for blur-my-shell
+        "dash-to-dock@micxgx.gmail.com"
         "pop-shell@system76.com"
         "rounded-window-corners@yilozt" # UUID for rounded-window-corners-reborn
         "transparent-top-bar@zhanghai.me"
@@ -25,11 +30,10 @@
       brightness = 0.6;
       color = lib.gvariant.mkTuple [0.0 0.0 0.0 0.0];
     };
-    
+
     "org/gnome/shell/extensions/dash-to-dock" = {
       transparency-mode = "FIXED";
       background-opacity = 0.0;
     };
   };
 }
-

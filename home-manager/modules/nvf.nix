@@ -1,6 +1,9 @@
-{ config, pkgs, inputs, ... }:
-
 {
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
     inputs.nvf.homeManagerModules.default
   ];
@@ -26,7 +29,7 @@
         scrolloff = 8;
         conceallevel = 2;
         spelllang = "en_us";
-        spell = true;  # Enable spellcheck
+        spell = true; # Enable spellcheck
       };
 
       # Core plugins for writing

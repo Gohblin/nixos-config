@@ -1,6 +1,8 @@
-{ config, lib, ... }:
-
-let
+{
+  config,
+  lib,
+  ...
+}: let
   userName = builtins.head (builtins.attrNames (lib.filterAttrs (_: user: user.isNormalUser) config.users.users));
 in {
   security.polkit.extraConfig = ''
@@ -13,11 +15,15 @@ in {
     });
   '';
 
-  security.sudo.extraRules = [{
-    commands = [
-      { command = "/run/current-system/sw/bin/systemctl start gdm-autologin-once.service"; options = ["NOPASSWD"]; }
-    ];
-    users = [ "${userName}" ];
-  }];
+  security.sudo.extraRules = [
+    {
+      commands = [
+        {
+          command = "/run/current-system/sw/bin/systemctl start gdm-autologin-once.service";
+          options = ["NOPASSWD"];
+        }
+      ];
+      users = ["${userName}"];
+    }
+  ];
 }
-

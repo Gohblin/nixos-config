@@ -1,6 +1,9 @@
-{ config, lib, pkgs, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   home.file.".config/focuswriter/focuswriter.conf".text = ''
     [General]
     AlwaysCenter=true

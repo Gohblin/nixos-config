@@ -1,13 +1,15 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
   cfg = config.services.minecraft-firewall;
 in {
   options.services.minecraft-firewall = {
     enable = mkEnableOption "Minecraft server firewall configuration";
-    
+
     port = mkOption {
       type = types.port;
       default = 25565;
@@ -24,11 +26,10 @@ in {
   config = mkIf cfg.enable {
     networking.firewall = {
       enable = true;
-      allowedTCPPorts = [ cfg.port ];
-      trustedInterfaces = mkIf cfg.useTailscale [ "tailscale0" ];
+      allowedTCPPorts = [cfg.port];
+      trustedInterfaces = mkIf cfg.useTailscale ["tailscale0"];
     };
 
     services.tailscale.enable = cfg.useTailscale;
   };
 }
-

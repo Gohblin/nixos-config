@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-let
+{pkgs, ...}: let
   clean-extensions = pkgs.writeScriptBin "clean-extensions" ''
     #!/usr/bin/env bash
     for uuid in $(dconf list /org/gnome/shell/extensions/); do
@@ -12,6 +10,5 @@ let
     done
   '';
 in {
-  environment.systemPackages = [ clean-extensions ];
+  environment.systemPackages = [clean-extensions];
 }
-

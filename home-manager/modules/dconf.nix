@@ -1,9 +1,6 @@
 # Generated via dconf2nix: https://github.com/gvolpe/dconf2nix
-{ lib, ... }:
-
-with lib.hm.gvariant;
-
-{
+{lib, ...}:
+with lib.hm.gvariant; {
   dconf.settings = {
     "com/ftpix/transparentbar" = {
       dark-full-screen = false;
@@ -28,7 +25,7 @@ with lib.hm.gvariant;
       show-scrollbars = false;
       style-preference = mkUint32 2;
       terminal-bell = false;
-      terminal-padding = mkTuple [ (mkUint32 20) (mkUint32 20) (mkUint32 20) (mkUint32 20) ];
+      terminal-padding = mkTuple [(mkUint32 20) (mkUint32 20) (mkUint32 20) (mkUint32 20)];
       use-custom-command = true;
       window-height = mkUint32 788;
       window-width = mkUint32 1250;
@@ -36,7 +33,7 @@ with lib.hm.gvariant;
 
     "org/gnome/Console" = {
       last-window-maximised = false;
-      last-window-size = mkTuple [ 627 396 ];
+      last-window-size = mkTuple [627 396];
     };
 
     "org/gnome/Extensions" = {
@@ -57,39 +54,39 @@ with lib.hm.gvariant;
     "org/gnome/calendar" = {
       active-view = "month";
       window-maximized = true;
-      window-size = mkTuple [ 768 600 ];
+      window-size = mkTuple [768 600];
     };
 
     "org/gnome/clocks/state/window" = {
       maximized = false;
       panel-id = "world";
-      size = mkTuple [ 1266 804 ];
+      size = mkTuple [1266 804];
     };
 
     "org/gnome/control-center" = {
       last-panel = "background";
-      window-state = mkTuple [ 1266 804 false ];
+      window-state = mkTuple [1266 804 false];
     };
 
     "org/gnome/desktop/app-folders" = {
-      folder-children = [ "Utilities" "YaST" "Pardus" ];
+      folder-children = ["Utilities" "YaST" "Pardus"];
     };
 
     "org/gnome/desktop/app-folders/folders/Pardus" = {
-      categories = [ "X-Pardus-Apps" ];
+      categories = ["X-Pardus-Apps"];
       name = "X-Pardus-Apps.directory";
       translate = true;
     };
 
     "org/gnome/desktop/app-folders/folders/Utilities" = {
-      apps = [ "org.freedesktop.GnomeAbrt.desktop" "nm-connection-editor.desktop" "org.gnome.baobab.desktop" "org.gnome.Connections.desktop" "org.gnome.DejaDup.desktop" "org.gnome.DiskUtility.desktop" "org.gnome.Evince.desktop" "org.gnome.FileRoller.desktop" "org.gnome.font-viewer.desktop" "org.gnome.Loupe.desktop" "org.gnome.seahorse.Application.desktop" "org.gnome.tweaks.desktop" "org.gnome.Usage.desktop" ];
-      categories = [ "X-GNOME-Utilities" ];
+      apps = ["org.freedesktop.GnomeAbrt.desktop" "nm-connection-editor.desktop" "org.gnome.baobab.desktop" "org.gnome.Connections.desktop" "org.gnome.DejaDup.desktop" "org.gnome.DiskUtility.desktop" "org.gnome.Evince.desktop" "org.gnome.FileRoller.desktop" "org.gnome.font-viewer.desktop" "org.gnome.Loupe.desktop" "org.gnome.seahorse.Application.desktop" "org.gnome.tweaks.desktop" "org.gnome.Usage.desktop"];
+      categories = ["X-GNOME-Utilities"];
       name = "X-GNOME-Utilities.directory";
       translate = true;
     };
 
     "org/gnome/desktop/app-folders/folders/YaST" = {
-      categories = [ "X-SuSE-YaST" ];
+      categories = ["X-SuSE-YaST"];
       name = "suse-yast.directory";
       translate = true;
     };
@@ -104,8 +101,8 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/desktop/input-sources" = {
-      sources = [ (mkTuple [ "xkb" "us" ]) ];
-      xkb-options = [ "terminate:ctrl_alt_bksp" ];
+      sources = [(mkTuple ["xkb" "us"])];
+      xkb-options = ["terminate:ctrl_alt_bksp"];
     };
 
     "org/gnome/desktop/interface" = {
@@ -124,7 +121,7 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/desktop/notifications" = {
-      application-children = [ "org-gnome-console" "gnome-power-panel" "zen" "com-mattjakeman-extensionmanager" "discord" ];
+      application-children = ["org-gnome-console" "gnome-power-panel" "zen" "com-mattjakeman-extensionmanager" "discord"];
     };
 
     "org/gnome/desktop/notifications/application/com-mattjakeman-extensionmanager" = {
@@ -164,7 +161,7 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/desktop/wm/keybindings" = {
-      close = [ "<Super>q" ];
+      close = ["<Super>q"];
     };
 
     "org/gnome/desktop/wm/preferences" = {
@@ -177,7 +174,7 @@ with lib.hm.gvariant;
 
     "org/gnome/epiphany/state" = {
       is-maximized = true;
-      window-size = mkTuple [ 1290 828 ];
+      window-size = mkTuple [1290 828];
     };
 
     "org/gnome/evolution-data-server" = {
@@ -186,7 +183,7 @@ with lib.hm.gvariant;
 
     "org/gnome/mutter" = {
       edge-tiling = false;
-      experimental-features = [ "scale-monitor-framebuffer" "scale-monitor-framebuffer" ];
+      experimental-features = ["scale-monitor-framebuffer" "scale-monitor-framebuffer"];
       overlay-key = "Super_L";
     };
 
@@ -197,8 +194,8 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/nautilus/window-state" = {
-      initial-size = mkTuple [ 627 804 ];
-      initial-size-file-chooser = mkTuple [ 890 550 ];
+      initial-size = mkTuple [627 804];
+      initial-size-file-chooser = mkTuple [890 550];
       maximized = false;
     };
 
@@ -215,11 +212,11 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/shell" = {
-      command-history = [ "r" ];
+      command-history = ["r"];
       disable-user-extensions = false;
-      disabled-extensions = [ "places-menu@gnome-shell-extensions.gcampax.github.com" "dash-to-panel@jderose9.github.com" "window-title-is-back@fthx" "gtktitlebar@velitasali.github.io" "transparent-window-moving@noobsai.github.com" "rounded-window-corners@fxgn" "desktop-cube@schneegans.github.com" "dynamic-panel@velhlkj.com" ];
-      enabled-extensions = [ "blur-my-shell@aunetx" "pop-shell@system76.com" "dash-to-dock@micxgx.gmail.com" "flypie@schneegans.github.com" "CoverflowAltTab@palatis.blogspot.com" "compiz-windows-effect@hermes83.github.com" "caffeine@patapon.info" "transparent-top-bar@ftpix.com" ];
-      favorite-apps = [ "org.gnome.Nautilus.desktop" "zen.desktop" ];
+      disabled-extensions = ["places-menu@gnome-shell-extensions.gcampax.github.com" "dash-to-panel@jderose9.github.com" "window-title-is-back@fthx" "gtktitlebar@velitasali.github.io" "transparent-window-moving@noobsai.github.com" "rounded-window-corners@fxgn" "desktop-cube@schneegans.github.com" "dynamic-panel@velhlkj.com"];
+      enabled-extensions = ["blur-my-shell@aunetx" "pop-shell@system76.com" "dash-to-dock@micxgx.gmail.com" "flypie@schneegans.github.com" "CoverflowAltTab@palatis.blogspot.com" "compiz-windows-effect@hermes83.github.com" "caffeine@patapon.info" "transparent-top-bar@ftpix.com"];
+      favorite-apps = ["org.gnome.Nautilus.desktop" "zen.desktop"];
       last-selected-power-profile = "performance";
       welcome-dialog-last-shown-version = "47.2";
     };
@@ -288,7 +285,7 @@ with lib.hm.gvariant;
 
     "org/gnome/shell/extensions/coverflowalttab" = {
       current-workspace-only = "all";
-      switcher-background-color = mkTuple [ 1.0 1.0 1.0 ];
+      switcher-background-color = mkTuple [1.0 1.0 1.0];
     };
 
     "org/gnome/shell/extensions/dash-to-dock" = {
@@ -338,8 +335,8 @@ with lib.hm.gvariant;
     };
 
     "org/gtk/settings/color-chooser" = {
-      custom-colors = [ (mkTuple [ 0.4 0.4 0.4 1.0 ]) ];
-      selected-color = mkTuple [ true 1.0 1.0 1.0 1.0 ];
+      custom-colors = [(mkTuple [0.4 0.4 0.4 1.0])];
+      selected-color = mkTuple [true 1.0 1.0 1.0 1.0];
     };
 
     "org/gtk/settings/file-chooser" = {
@@ -354,9 +351,8 @@ with lib.hm.gvariant;
       sort-directories-first = false;
       sort-order = "ascending";
       type-format = "category";
-      window-position = mkTuple [ 29 32 ];
-      window-size = mkTuple [ 1231 781 ];
+      window-position = mkTuple [29 32];
+      window-size = mkTuple [1231 781];
     };
-
   };
 }

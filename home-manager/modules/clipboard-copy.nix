@@ -1,16 +1,18 @@
 # clipboard-copy.nix
-{ config, lib, pkgs, ... }:
-
-with lib;
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
   cfg = config.custom.clipboard-copy;
   copyScript = pkgs.writeShellScriptBin "cp2cb" ''
     if [ -z "$1" ]; then
       echo "Usage: cp2cb <file>"
       exit 1
     fi
-    
+
     if [ -n "$WAYLAND_DISPLAY" ]; then
       ${pkgs.wl-clipboard}/bin/wl-copy < "$1"
     else
@@ -23,11 +25,10 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = [ 
+    home.packages = [
       copyScript
       pkgs.xclip
       pkgs.wl-clipboard
     ];
   };
 }
-

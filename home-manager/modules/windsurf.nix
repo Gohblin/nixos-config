@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-let
+{pkgs, ...}: let
   # https://windsurf-stable.codeiumdata.com/linux-x64/stable/d08b8ea13d580d24be204c76e5dd1651d7234cd2/Windsurf-linux-x64-1.2.6.tar.gz
   version = "1.2.6"; # "windsurfVersion"
   urlHash = "d08b8ea13d580d24be204c76e5dd1651d7234cd2"; # "version"
@@ -22,10 +21,8 @@ let
     };
     updateScript = "";
   };
-in
-{
+in {
   home.packages = with pkgs; [
     windsurf
   ];
 }
-

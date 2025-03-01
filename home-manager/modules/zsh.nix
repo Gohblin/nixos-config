@@ -1,7 +1,10 @@
 # zsh.nix
-{ pkgs, lib, config, ... }:
-
 {
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -27,7 +30,7 @@
         "python"
         "npm"
       ];
-      theme = "";  # Disable Oh My Zsh themes
+      theme = ""; # Disable Oh My Zsh themes
     };
 
     plugins = [
@@ -52,7 +55,7 @@
 
       # Custom startup message
       echo "Welcome to ${config.home.username}'s shell"
-      
+
       # Add custom paths
       export PATH="$HOME/.local/bin:$PATH"
 
@@ -89,4 +92,3 @@
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
 }
-

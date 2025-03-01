@@ -1,5 +1,8 @@
-{ config, pkgs, ... }:
 {
+  config,
+  pkgs,
+  ...
+}: {
   system.activationScripts.pieces-os-fonts = {
     text = ''
       if [ ! -d /etc/fonts ]; then

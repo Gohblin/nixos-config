@@ -1,6 +1,9 @@
-{ config, lib, pkgs, ... }:
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   userName = builtins.head (builtins.attrNames (lib.filterAttrs (_: user: user.isNormalUser) config.users.users));
 in {
   options = {
@@ -17,14 +20,14 @@ in {
     environment.systemPackages = [
       (pkgs.writeScriptBin "restart-gnome-session" ''
         #!${pkgs.runtimeShell}
-        
+
         # Restart GNOME session
         dbus-send --session --type=method_call \
           --dest=org.gnome.SessionManager \
           /org/gnome/SessionManager \
           org.gnome.SessionManager.Logout \
           uint32:0
-        
+
         # Start the auto-login service
         systemctl start gnome-autologin.service
       '')
@@ -36,7 +39,7 @@ in {
       script = ''
         # Wait for the login screen to appear
         sleep 5
-        
+
         # Type the password and press Enter
         ${pkgs.xdotool}/bin/xdotool type ${config.services.gnomeSessionRestart.password}
         ${pkgs.xdotool}/bin/xdotool key Return
@@ -58,4 +61,3 @@ in {
     '';
   };
 }
-

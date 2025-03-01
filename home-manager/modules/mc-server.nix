@@ -1,22 +1,24 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
   cfg = config.programs.minecraft-server;
 
   # Create a custom package that contains only the necessary Java components
   javaVersions = pkgs.symlinkJoin {
     name = "minecraft-java-versions";
     paths = [
-      (pkgs.jdk8.override { enableJavaFX = false; })
-      (pkgs.jdk11.override { enableJavaFX = false; })
-      (pkgs.jdk17.override { enableJavaFX = false; })
+      (pkgs.jdk8.override {enableJavaFX = false;})
+      (pkgs.jdk11.override {enableJavaFX = false;})
+      (pkgs.jdk17.override {enableJavaFX = false;})
     ];
     postBuild = ''
       # Create version-specific directories
       mkdir -p $out/java-versions/{8,11,17}
-      
+
       # Create symlinks for each Java version
       ln -s ${pkgs.jdk8}/bin/java $out/java-versions/8/java
       ln -s ${pkgs.jdk11}/bin/java $out/java-versions/11/java
@@ -91,7 +93,7 @@ let
 
     # Find server jar in the script
     SERVER_JAR=$(grep -o '[^[:space:]]*\.jar' "$SERVER_SCRIPT" | head -n1)
-    
+
     if [ -z "$SERVER_JAR" ]; then
       echo "Warning: Could not detect server jar in script, using default Java 17"
       JAVA_VERSION="17"
@@ -101,7 +103,7 @@ let
 
     # Select appropriate Java version
     JAVA_CMD="${javaVersions}/java-versions/$JAVA_VERSION/java"
-    
+
     echo "Using Java $JAVA_VERSION: $JAVA_CMD"
 
     # Make script executable if it isn't already
@@ -114,7 +116,6 @@ let
     # Run the server script with the detected Java version
     exec env JAVA="$JAVA_CMD" "$SERVER_SCRIPT" "$@"
   '';
-
 in {
   options.programs.minecraft-server = {
     enable = mkEnableOption "Minecraft server wrapper";
@@ -133,13 +134,15 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = [ 
-      cfg.package 
-      javaVersions
-      pkgs.bash
-      pkgs.unzip
-      pkgs.binutils
-      pkgs.coreutils
-    ] ++ cfg.extraPackages;
+    home.packages =
+      [
+        cfg.package
+        javaVersions
+        pkgs.bash
+        pkgs.unzip
+        pkgs.binutils
+        pkgs.coreutils
+      ]
+      ++ cfg.extraPackages;
   };
 }

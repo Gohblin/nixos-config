@@ -3,9 +3,8 @@
   lib,
   pkgs,
   ...
-}: 
-with lib;
-let
+}:
+with lib; let
   cfg = config.programs.discord-bd;
 in {
   options.programs.discord-bd = {
@@ -13,7 +12,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = [ 
+    home.packages = [
       pkgs.discord
       pkgs.betterdiscordctl
       pkgs.curl

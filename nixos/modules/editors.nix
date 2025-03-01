@@ -1,13 +1,15 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
   cfg = config.editors;
 in {
   options.editors = {
     enable = mkEnableOption "Editor configuration";
-    
+
     neovim = {
       enable = mkEnableOption "Neovim configuration";
       withLSP = mkEnableOption "Configure Neovim with LSP support";
@@ -19,16 +21,18 @@ in {
       (pkgs.neovim.override {
         configure = {
           packages.myPlugins = with pkgs.vimPlugins; {
-            start = [ nvim-lspconfig ] ++ optional cfg.neovim.withLSP nvim-lspconfig;
+            start = [nvim-lspconfig] ++ optional cfg.neovim.withLSP nvim-lspconfig;
           };
           customRC = ''
             ${optionalString cfg.neovim.withLSP ''
               lua << EOF
               local lspconfig = require('lspconfig')
-              ${concatStringsSep "\n" (mapAttrsToList (name: langCfg: 
-                optionalString (langCfg.enable && langCfg.lsp != null) 
-                  "lspconfig.${name}.setup{}"
-              ) config.programming.languages)}
+              ${concatStringsSep "\n" (mapAttrsToList (
+                  name: langCfg:
+                    optionalString (langCfg.enable && langCfg.lsp != null)
+                    "lspconfig.${name}.setup{}"
+                )
+                config.programming.languages)}
               EOF
             ''}
           '';
@@ -37,4 +41,3 @@ in {
     ];
   };
 }
-

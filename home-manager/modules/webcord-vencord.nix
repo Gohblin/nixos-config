@@ -3,9 +3,8 @@
   lib,
   pkgs,
   ...
-}: 
-with lib;
-let
+}:
+with lib; let
   cfg = config.programs.webcord-vencord;
 
   # Fetch Gruvbox theme
@@ -53,14 +52,14 @@ let
         --bg2: #504945;
         --bg3: #665c54;
         --bg4: #7c6f64;
-        
+
         --fg: #ebdbb2;
         --fg0: #fbf1c7;
         --fg1: #ebdbb2;
         --fg2: #d5c4a1;
         --fg3: #bdae93;
         --fg4: #a89984;
-        
+
         --red: #fb4934;
         --green: #b8bb26;
         --yellow: #fabd2f;
@@ -68,7 +67,7 @@ let
         --purple: #d3869b;
         --aqua: #8ec07c;
         --orange: #fe8019;
-        
+
         /* Apply colors */
         --background-primary: var(--bg);
         --background-secondary: var(--bg1);
@@ -85,14 +84,13 @@ let
       EOF
     '';
   });
-
 in {
   options.programs.webcord-vencord = {
     enable = mkEnableOption "WebCord with Vencord support";
   };
 
   config = mkIf cfg.enable {
-    home.packages = [ 
+    home.packages = [
       webcord-themed
     ];
   };

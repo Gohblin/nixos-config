@@ -1,6 +1,9 @@
-{ config, lib, pkgs, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   options = {
     myFontConfig = {
       enable = lib.mkEnableOption "Enable custom font configuration";
@@ -36,4 +39,3 @@
     ];
   };
 }
-

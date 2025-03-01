@@ -3,9 +3,8 @@
   lib,
   pkgs,
   ...
-}: 
-with lib;
-let
+}:
+with lib; let
   cfg = config.programs.discord-vencord;
 in {
   options.programs.discord-vencord = {
@@ -13,7 +12,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = [ 
+    home.packages = [
       pkgs.discord
       pkgs.vencord-installer
     ];

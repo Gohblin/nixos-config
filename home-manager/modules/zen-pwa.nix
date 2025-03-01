@@ -1,8 +1,11 @@
-{config, lib, pkgs, inputs, ...}:
-
-with lib;
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
+with lib; let
   cfg = config.programs.zen-pwa;
 in {
   options.programs.zen-pwa = {
@@ -17,7 +20,7 @@ in {
     home.file = {
       ".librewolf/native-messaging-hosts/firefoxpwa.json".source = "${pkgs.firefoxpwa}/lib/mozilla/native-messaging-hosts/firefoxpwa.json";
       ".mozilla/native-messaging-hosts/firefoxpwa.json".source = "${pkgs.firefoxpwa}/lib/mozilla/native-messaging-hosts/firefoxpwa.json";
-      
+
       ".librewolf/policies/policies.json".text = builtins.toJSON {
         policies = {
           ExtensionSettings = {
