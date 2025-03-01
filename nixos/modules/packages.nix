@@ -56,4 +56,6 @@
     home-manager
     dconf2nix
 
+  ];
+
 }

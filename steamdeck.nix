@@ -4,10 +4,11 @@
   jovian.devices.steamdeck.enable = true;
   
   jovian.hardware.has.amd.gpu = true;
-  
+
   jovian.steam = {
     enable = true;
     autoStart = true;
+    desktopSession = "plasma";
     user = "deck";
   };
   

@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  home.username = "joshua";
-  home.homeDirectory = "/home/joshua";
+  home.username = "deck";
+  home.homeDirectory = "/home/deck";
   home.stateVersion = "24.11";
 }

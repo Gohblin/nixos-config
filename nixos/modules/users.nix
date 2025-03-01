@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  users.users.joshua = {
+  users.users.deck = {
     isNormalUser = true;
     description = "Deck";
     shell = pkgs.zsh;

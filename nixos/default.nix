@@ -23,7 +23,7 @@
     useGlobalPkgs = true;
     useUserPackages = true;
     backupFileExtension = "backup";
-    users.joshua = { ... }: {
+    users.deck = { ... }: {
       # Your home-manager config for joshua
     };
   };
@@ -45,6 +45,8 @@
     port = 25565;
     useTailscale = true;
   };
+
+  myPlasma.enable = true;
 
   system.stateVersion = "24.11";
 

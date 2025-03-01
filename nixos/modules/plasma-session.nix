@@ -14,14 +14,12 @@ with lib;
     services.xserver.displayManager.startx.enable = true;
     services.xserver.displayManager.lightdm.enable = false;
     services.xserver.displayManager.gdm.enable = false;
-    services.xserver.displayManager.sddm.enable = false;
+    services.displayManager.sddm.enable = false;
 
     # Enable X11 with KDE Plasma 6
-    services.xserver = {
-      enable = true;
+    services = {
       desktopManager.plasma6 = {
         enable = true;
-        useQtScaling = true;
       };
     };
 
@@ -76,7 +74,7 @@ with lib;
     };
 
     # Set default session to Plasma X11
-    services.xserver.displayManager.defaultSession = "plasma";
+    services.displayManager.defaultSession = "plasma";
     
     # Add common fonts
     fonts.packages = with pkgs; [

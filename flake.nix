@@ -42,7 +42,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.joshua = import ./home-manager/default.nix;
+            home-manager.users.deck = import ./home-manager/default.nix;
             
             home-manager.sharedModules = [
               inputs.nixcord.homeManagerModules.nixcord
@@ -61,7 +61,7 @@
     };
 
     homeConfigurations = {
-      "joshua@nixos" = home-manager.lib.homeManagerConfiguration {
+      "deck@nixos" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
           ./home-manager/default.nix
