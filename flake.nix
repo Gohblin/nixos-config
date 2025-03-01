@@ -74,11 +74,9 @@
       };
     };
 
-    # Expose modules from subdirectories
     nixosModules = import ./nixos/modules;
     homeManagerModules = import ./home-manager/modules;
 
-    # TODO: Add any custom packages or overlays
     # overlays = import ./overlays;
   };
 }

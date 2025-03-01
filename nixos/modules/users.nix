@@ -3,7 +3,7 @@
 {
   users.users.joshua = {
     isNormalUser = true;
-    description = "Joshua";
+    description = "Deck";
     shell = pkgs.zsh;
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [];
@@ -11,9 +11,9 @@
 
   programs.zsh.enable = true;
 
-  home-manager.users.joshua = { pkgs, ... }: {
-    home.username = "joshua";
-    home.homeDirectory = "/home/joshua";
+  home-manager.users.deck = { pkgs, ... }: {
+    home.username = "deck";
+    home.homeDirectory = "/home/deck";
     home.stateVersion = "24.11";
   };
 

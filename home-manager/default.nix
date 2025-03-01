@@ -3,9 +3,6 @@
 {
   imports = [
     ./modules/packages.nix
-    ./modules/files.nix
-    ./modules/session.nix
-    ./modules/kitty.nix
     ./modules/dconf-update.nix
     ./modules/zsh.nix
     ./modules/mc-server.nix

@@ -4,14 +4,13 @@
   imports = [
     ./hardware-configuration.nix
     ./modules/boot.nix
-    ./modules/desktop.nix
     ./modules/networking.nix
     ./modules/locale.nix
+    ./modules/plasma-session.nix
     ./modules/audio.nix
     ./modules/users.nix
     ./modules/system.nix
     ./modules/packages.nix
-    ./modules/extension-cleanup.nix
     ./modules/minecraft-firewall.nix
     ./modules/font-config.nix
     ./modules/git.nix
