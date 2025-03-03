@@ -39,7 +39,7 @@
         inherit system;
         modules = [
           ./nixos/default.nix
-          ./steamdeck.nix
+          #./steamdeck.nix
           nix-snapd.nixosModules.default
 
           # Import Jovian modules
@@ -49,7 +49,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.deck = import ./home-manager/default.nix;
+            home-manager.users.joshua = import ./home-manager/default.nix;
 
             home-manager.sharedModules = [
               inputs.nixcord.homeManagerModules.nixcord
@@ -68,7 +68,7 @@
     };
 
     homeConfigurations = {
-      "deck@nixos" = home-manager.lib.homeManagerConfiguration {
+      "joshua@nixos" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
           ./home-manager/default.nix
@@ -84,6 +84,5 @@
     nixosModules = import ./nixos/modules;
     homeManagerModules = import ./home-manager/modules;
 
-    # overlays = import ./overlays;
   };
 }

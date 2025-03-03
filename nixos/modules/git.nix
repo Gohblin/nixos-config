@@ -45,7 +45,7 @@
     };
 
     # User-specific Git config via Home Manager
-    home-manager.users."deck" = {
+    home-manager.users."joshua" = {
       # Your actual system username here
       programs.git = {
         enable = true;

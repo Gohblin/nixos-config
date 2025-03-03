@@ -1,23 +1,19 @@
+{ config, pkgs, ... }:
+
 {
-  config,
-  lib,
-  pkgs,
-  ...
-}: {
-  options = {
-    # You can add custom options here if needed
+  services.xserver.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
+
+  # Configure keyboard layout
+  services.xserver.xkb = {
+    layout = "us";
+    variant = "";
   };
 
-  config = {
-    services.gnome.core-utilities.enable = true;
-    services.xserver = {
-      enable = true;
-      displayManager.gdm.enable = false;
-      desktopManager.gnome.enable = true;
-      xkb = {
-        layout = "us";
-        variant = "";
-      };
-    };
-  };
+  # Enable printing
+  services.printing.enable = true;
+
+  # Enable Firefox
+  programs.firefox.enable = true;
 }
