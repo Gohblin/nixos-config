@@ -1,9 +1,9 @@
 { config, pkgs, ... }:
 
 {
-  users.users.joshua = {
+  users.users.deck = {
     isNormalUser = true;
-    description = "Joshua";
+    description = "Deck";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       vim
@@ -12,5 +12,5 @@
 
   # Enable automatic login
   services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "joshua";
+  services.xserver.displayManager.autoLogin.user = "deck";
 }
