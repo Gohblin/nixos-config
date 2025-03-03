@@ -6,14 +6,19 @@
     enable = true;                      # Enable Steam Deck hardware support
     autoUpdate = true;                  # Auto-update BIOS and controller firmware
     enableGyroDsuService = true;        # Enable gyroscope support for compatible games
+    enableXorgRotation = true;          # Ensure proper display rotation
   };
 
   # Enable Steam Deck UI with auto-start
   jovian.steam = {
     enable = true;                      # Enable Steam Deck UI
     autoStart = true;                   # Auto-start the Steam Deck UI on boot
-    desktopSession = "gnome";           # Use GNOME for desktop mode
+    desktopSession = "plasma";          # Use KDE Plasma for desktop mode
     user = "deck";                      # Set the Steam user
+    environment = {
+      # Set landscape mode for KDE Plasma
+      DESKTOP_ORIENTATION = "landscape";
+    };
   };
 
   # Enable SteamOS-like configurations
@@ -34,11 +39,34 @@
     initialPassword = "steamdeck";      # Change this after installation
   };
 
-  # GNOME desktop environment
+  # KDE Plasma 6 desktop environment
   services.xserver = {
     enable = true;
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
+    displayManager.sddm = {
+      enable = true;
+      wayland.enable = true;           # Enable Wayland support
+    };
+    desktopManager.plasma6.enable = true;
+  };
+
+  # Auto-start Steam in desktop mode
+  systemd.user.services.steam-autostart = {
+    description = "Start Steam in desktop mode";
+    wantedBy = [ "plasma-workspace.target" ];
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.steam}/bin/steam -silent -nochatui -nofriendsui";
+      Restart = "on-failure";
+    };
+  };
+
+  # Set KDE Plasma to use landscape orientation
+  environment.etc."xdg/plasma-workspace/env/set-orientation.sh" = {
+    mode = "0755";
+    text = ''
+      #!/bin/sh
+      export QT_SCREEN_ROTATION_ANGLE=0
+    '';
   };
 
   # Graphics drivers
@@ -106,8 +134,15 @@
     protontricks            # Winetricks for Proton
     protonup-qt             # Proton GE manager
     
+    # KDE specific utilities
+    plasma-pa               # Plasma volume control
+    plasma-nm               # Network management in Plasma
+    kdeconnect              # Connect to your phone
+    kate                    # Text editor
+    konsole                 # Terminal
+    ark                     # Archive manager
+    
     # Desktop utilities
-    gnome.gnome-tweaks
     flatpak                 # For installing apps like Heroic Game Launcher
   ];
 
@@ -120,7 +155,7 @@
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
-    # Use the latest kernel for best hardware support
+    # Use the latest kerneldddd for best hardware support
     kernelPackages = pkgs.linuxPackages_latest;
   };
 
@@ -137,5 +172,5 @@
   };
 
   # Set system state version
-  system.stateVersion = "23.11"; # Use your NixOS version here
+  system.stateVersion = "24.11"; # Use your NixOS version here
 }
