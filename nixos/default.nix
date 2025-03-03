@@ -13,6 +13,6 @@
 
   git.enable = true;
   git.userName = "Gohblin";
-  git.userEmail = "literategoblin@gmail.com"
+  git.userEmail = "literategoblin@gmail.com";
 
 }
